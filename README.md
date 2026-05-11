@@ -62,11 +62,11 @@ python -m streamlit run app.py
 ## 📁 Project Structure
 
 
-vibe-coding/
-├── app.py # Streamlit UI
-├── brain.py # Query engine
-├── process_paper.py # Data ingestion pipeline
-├── outputs/ # Structured JSON
+vibe-coding/<br>
+├── app.py # Streamlit UI<br>
+├── brain.py # Query engine<br>
+├── process_paper.py # Data ingestion pipeline<br>
+├── outputs/ # Structured JSON<br>
 ├── data/ # Source documents
 
 
