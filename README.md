@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="logo.png" width="120"/>
+</p>
+
+> Turn documents into structured intelligence.
+
 # 🧠 Literature Brain
 
 > A local AI-powered research assistant that turns documents into structured, searchable knowledge.
