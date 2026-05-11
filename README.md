@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" width="120"/>
+  <img src="logo.png" width="150"/>
 </p>
 
 > Turn documents into structured intelligence.
