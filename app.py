@@ -23,7 +23,7 @@ papers = load_data()
 # SIDEBAR
 # ------------------------
 with st.sidebar:
-    st.title("🧠 VC Literature Library")
+    st.title("🧠 Literature Library")
 
     st.markdown("---")
 
@@ -47,7 +47,7 @@ with st.sidebar:
 # ------------------------
 # MAIN HEADER
 # ------------------------
-st.title("🧠 VC Literature Brain")
+st.title("🧠 Literature Brain")
 st.caption("Ask questions across your research library")
 
 # ------------------------
@@ -64,7 +64,7 @@ for msg in st.session_state.messages:
 # ------------------------
 # INPUT BOX
 # ------------------------
-query = st.chat_input("Ask the VC Brain about your library...")
+query = st.chat_input("Ask the Brain about your library...")
 
 if query:
     # Save user message
