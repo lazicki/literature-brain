@@ -2,8 +2,7 @@
   <img src="logo.png" width="150"/>
 </p>
 
-> Turn documents into structured intelligence.
-
+Turn documents into structured intelligence. Built with ❤️ locally
 # 🧠 Literature Brain
 
 > A local AI-powered research assistant that turns documents into structured, searchable knowledge.
