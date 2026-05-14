@@ -23,26 +23,33 @@ papers = load_data()
 # SIDEBAR
 # ------------------------
 with st.sidebar:
-    st.title("🧠 Literature Library")
+    st.title("🧠 Literature Brain")
+
+    st.markdown("Turn documents into structured intelligence.")
 
     st.markdown("---")
 
-    st.write(f"📚 Papers loaded: **{len(papers)}**")
+    # Library stats
+    st.subheader("📚 Library")
+    st.metric("Papers Loaded", len(papers))
 
-    st.markdown("### Controls")
-
+    # Controls
+    st.subheader("⚙️ Settings")
     max_papers = st.slider("Context size", 1, 10, 3)
-
     show_sources = st.checkbox("Show sources", value=True)
 
+    # Clear chat button
+    if st.button("🧹 Clear Chat"):
+        st.session_state.messages = []
+        st.rerun()
+
     st.markdown("---")
-    st.markdown("Built by Russ locally  \nwith Ollama + LLaMA")
-    
-    st.markdown("### System Status")
-    
+
+    # Status
+    st.subheader("🟢 System")
     st.success("LLM connected")
-    
-    st.info(f"{len(papers)} papers loaded")
+
+    st.caption("Built locally with Ollama + LLaMA")
 
 # ------------------------
 # MAIN HEADER
