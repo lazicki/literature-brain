@@ -90,15 +90,22 @@ if query:
 
     # Generate answer
     with st.chat_message("assistant"):
-        with st.spinner("Pondering..."):
+        with st.spinner("🧠 Thinking..."):
             answer = ask_llm(query, relevant)
-            st.write(answer)
 
-            # Save assistant response
-            st.session_state.messages.append({
-                "role": "assistant",
-                "content": answer
-            })
+        st.write(answer)
+
+        # Save assistant response
+        st.session_state.messages.append({
+            "role": "assistant",
+            "content": answer
+        })
+
+        # Collapsible sources (cleaner UI)
+        if show_sources and relevant:
+            with st.expander("📄 Sources"):
+                for p in relevant:
+                    st.markdown(f"- **{p.get('source_file', 'unknown')}**")
 
             # Show sources
             if show_sources:
