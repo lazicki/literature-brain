@@ -39,6 +39,8 @@ def find_relevant_papers(query, papers):
 
 def ask_llm(query, context):
     prompt = f"""
+- Cite sources using (source_file)
+    
 You are a research assistant.
 
 Answer the question using the provided papers.
