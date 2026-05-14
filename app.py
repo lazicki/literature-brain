@@ -55,7 +55,12 @@ with st.sidebar:
 # MAIN HEADER
 # ------------------------
 st.title("🧠 Literature Brain")
-st.caption("Ask questions across your research library")
+
+st.markdown(
+    "Ask questions across your research library and get synthesized insights."
+)
+
+st.markdown("---")
 
 # ------------------------
 # CHAT HISTORY
