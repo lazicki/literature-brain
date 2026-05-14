@@ -87,7 +87,7 @@ def main():
                 "key_findings": p.get("key_findings", []),
                 "source_file": p.get("source_file", "")
             }
-            for p in relevant[:max_papers]
+            for p in relevant
 ]
 
         if not relevant:
