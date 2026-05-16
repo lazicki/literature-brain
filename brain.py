@@ -21,21 +21,39 @@ def load_library():
 
     return papers
     
-def find_relevant_papers(query, papers):
+def find_relevant_papers(query, papers, top_k=5):
     query_words = query.lower().split()
+
     scored = []
 
     for p in papers:
-        text = json.dumps(p).lower()
-        score = sum(word in text for word in query_words)
+        # Combine useful fields
+        text = " ".join([
+            " ".join(p.get("summary", [])),
+            " ".join(p.get("key_findings", [])),
+            p.get("objective", ""),
+            " ".join(p.get("methods", [])),
+            " ".join(p.get("variables", []))
+        ]).lower()
+
+        score = 0
+
+        for word in query_words:
+            if word in text:
+                score += 1
+
+        # Bonus scoring
+        if any(word in " ".join(p.get("tags", [])).lower() for word in query_words):
+            score += 2  # tags are important
 
         if score > 0:
             scored.append((score, p))
 
-    # sort by relevance
-    scored.sort(reverse=True, key=lambda x: x[0])
+    # Sort by score (highest first)
+    scored.sort(key=lambda x: x[0], reverse=True)
 
-    return [p for _, p in scored[:5]]
+    # Return top_k papers
+    return [p for _, p in scored[:top_k]]
 
 def ask_llm(query, context):
     prompt = f"""
