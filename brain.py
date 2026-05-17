@@ -27,28 +27,25 @@ def find_relevant_papers(query, papers, top_k=5):
     scored = []
 
     for p in papers:
-        # Combine useful fields
-        text = " ".join([
-            " ".join(p.get("summary", [])),
-            " ".join(p.get("key_findings", [])),
-            p.get("objective", ""),
-            " ".join(p.get("methods", [])),
-            " ".join(p.get("variables", []))
-        ]).lower()
+    ...
+    score = 0
 
-        score = 0
+    # keyword scoring
+    for word in query_words:
+        if word in text:
+            score += 1
 
-        for word in query_words:
-            if word in text:
-                score += 1
+    # tag boost
+    if any(word in " ".join(p.get("tags", [])).lower() for word in query_words):
+        score += 2
 
-        # Bonus scoring
-        if any(word in " ".join(p.get("tags", [])).lower() for word in query_words):
-            score += 2  # tags are important
+    # phrase boost
+    if query.lower() in text:
+        score += 3
 
-        if score > 0:
-            if score >= 2:
-                scored.append((score, p))
+    # STEP 4 (filter weak matches)
+    if score >= 2:
+        scored.append((score, p))
 
     # Sort by score (highest first)
     scored.sort(key=lambda x: x[0], reverse=True)
