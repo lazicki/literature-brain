@@ -27,8 +27,8 @@ def find_relevant_papers(query, papers, top_k=5):
     scored = []
 
     for p in papers:
-    ...
-    score = 0
+        ...
+        score = 0
 
     # keyword scoring
     for word in query_words:
