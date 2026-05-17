@@ -87,6 +87,7 @@ if query:
 
     # Get relevant papers
     relevant = find_relevant_papers(query, papers, top_k=max_papers)
+    st.write("DEBUG - Selected papers:", relevant)
 
     # Generate answer
     with st.chat_message("assistant"):
