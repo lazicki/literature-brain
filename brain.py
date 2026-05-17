@@ -35,17 +35,17 @@ def find_relevant_papers(query, papers, top_k=5):
         if word in text:
             score += 1
 
-    # tag boost
-    if any(word in " ".join(p.get("tags", [])).lower() for word in query_words):
-        score += 2
+        # tag boost
+        if any(word in " ".join(p.get("tags", [])).lower() for word in query_words):
+            score += 2
 
-    # phrase boost
-    if query.lower() in text:
-        score += 3
+        # phrase boost
+        if query.lower() in text:
+            score += 3
 
-    # STEP 4 (filter weak matches)
-    if score >= 2:
-        scored.append((score, p))
+        # STEP 4 (filter weak matches)
+        if score >= 2:
+            scored.append((score, p))
 
     # Sort by score (highest first)
     scored.sort(key=lambda x: x[0], reverse=True)
