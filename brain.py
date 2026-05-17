@@ -47,7 +47,8 @@ def find_relevant_papers(query, papers, top_k=5):
             score += 2  # tags are important
 
         if score > 0:
-            scored.append((score, p))
+            if score >= 2:
+                scored.append((score, p))
 
     # Sort by score (highest first)
     scored.sort(key=lambda x: x[0], reverse=True)
