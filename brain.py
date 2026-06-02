@@ -11,6 +11,17 @@ def embed_text(text):
     )
     return response["embedding"]
 
+def build_embeddings(papers):
+    for p in papers:
+        text = " ".join([
+            " ".join(p.get("summary", [])),
+            " ".join(p.get("key_findings", []))
+        ])
+
+        p["embedding"] = embed_text(text)
+
+    return papers
+
 def load_library():
     papers = []
 
