@@ -48,43 +48,19 @@ def load_library():
     return papers
     
 def find_relevant_papers(query, papers, top_k=5):
-    query_words = query.lower().split()
+    query_embedding = embed_text(query)
 
     scored = []
 
     for p in papers:
-        # Build searchable text
-        text = " ".join([
-            " ".join(p.get("summary", [])),
-            " ".join(p.get("key_findings", [])),
-            p.get("objective", ""),
-            " ".join(p.get("methods", [])),
-            " ".join(p.get("variables", []))
-        ]).lower()
+        if "embedding" not in p:
+            continue
 
-        score = 0
+        score = cosine_similarity(query_embedding, p["embedding"])
+        scored.append((score, p))
 
-        # keyword scoring
-        for word in query_words:
-            if word in text:
-                score += 1
-
-        # tag boost
-        if any(word in " ".join(p.get("tags", [])).lower() for word in query_words):
-            score += 2
-
-        # phrase boost
-        if query.lower() in text:
-            score += 3
-
-        # STEP 4 (filter weak matches)
-        if score >= 2:
-            scored.append((score, p))
-
-    # Sort by score (highest first)
     scored.sort(key=lambda x: x[0], reverse=True)
 
-    # Return top_k papers
     return [p for _, p in scored[:top_k]]
 
 def ask_llm(query, context):
