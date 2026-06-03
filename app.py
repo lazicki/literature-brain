@@ -1,5 +1,5 @@
 import streamlit as st
-from brain import load_library, find_relevant_papers, ask_llm
+from brain import load_library, find_relevant_papers, ask_llm, build_embeddings
 
 # ------------------------
 # PAGE CONFIG
