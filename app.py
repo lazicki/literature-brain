@@ -18,6 +18,7 @@ def load_data():
     return load_library()
 
 papers = load_data()
+papers = build_embeddings(papers)
 
 # ------------------------
 # SIDEBAR
